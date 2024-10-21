@@ -9,10 +9,16 @@ export const getFilmresponse = async () => {
   return movies.results
   
 };
-export const SearchMovie = async (query:String) => {
+export const SearchMovie = async (query:string) => {
   const response = await fetch(
     `${baseUrl}/search/movie?query=${query}&api_key=${apiKey}`
   );
   const movies = await response.json();
   return movies.results
 };
+
+export const getFilmResponseById = async(id: number ) => {
+  const response = await fetch(`${baseUrl}/movie/${id}?api_key=${apiKey}`);
+  const movies = await response.json();
+  return movies;
+}

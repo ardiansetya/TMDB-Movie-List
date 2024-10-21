@@ -1,17 +1,22 @@
-interface CardProps {
+import Image from "next/image";
+import Link from "next/link";
+
+type CardProps = {
+  key: number;
   id: number;
   title: string;
-  rating: number; // Mengubah GLfloat menjadi number
+  rating: number;
   img: string;
 }
 
-const Card: React.FC<CardProps> = ({ id, title, rating, img }) => {
+const Card: React.FC<CardProps> = ({id, key, title, rating, img }) => {
   return (
-    <section
-      key={id}
+    <Link
+    href={`/movie/${id}`}
+      key={key}
       className=" card bg-base-100 w-96 drop-shadow-xl hover:scale-110 hover:transition-all hover:duration-300 relative">
       <figure>
-        <img src={img} alt={title} className="transition-all duration-300" />
+        <Image src={img}  alt={title} className="transition-all duration-300" width={500} height={500} priority={true} /> 
       </figure>
       <div className="card-body transition-all duration-300">
         <div className="flex flex-col">
@@ -29,7 +34,7 @@ const Card: React.FC<CardProps> = ({ id, title, rating, img }) => {
           </div>
         </div>
       </div>
-    </section>
+    </Link>
   );
 };
 
